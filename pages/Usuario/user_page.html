@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	<title>SMART - User</title>
+	<link href="../../assets/css/materialize.css?v=1.2.0" rel="stylesheet" />
+	<link href="../../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../assets/css/font.css" rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="preLoader" class="preloader-wrapper big active preloader displayNone">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<div class="center userPage panel-heading z-depth-1" style="margin-top: 1px;" id="Titulo_Page">
+			<a class="white-text">
+				<i class="material-icons white-text" style="margin-top: 6px;">fingerprint</i>
+			</a>
+		</div>
+
+		<h4 class="center userPageText">Usuários</h4>
+
+		<div class="row" id="loaderBlur">
+
+			<div class="col s12" hidden>
+				<ul class="tabs">
+					<li class="tab col s3">
+						<a class="active" href="#tb_selection">Selection</a>
+					</li>
+					<li class="tab col s3">
+						<a href="#tb_edit">Edit</a>
+					</li>
+					<li class="tab col s3">
+						<a href="#tb_permission">Permission</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Primeira Aba da Tela -->
+			<div id="tb_selection" class="col s12 w3-animate-fading">
+				<div id="user_create" class="fixed-action-btn left">
+					<a class="btn-floating btn-large userPage " onclick="abre_Modal_Edit('0', '', '', '', '', '', '0');">
+						<i class="large material-icons">add</i>
+					</a>
+				</div>
+
+				<table class="highlight responsive-table">
+					<thead>
+						<tr class="userPageText">
+							<th>#</th>
+							<th>Nome</th>
+							<th>Empresa</th>
+							<th>Email</th>
+							<th>Status</th>
+							<th>Edit</th>
+							<th>Permissões</th>
+						</tr>
+					</thead>
+
+					<tbody id="usersList">
+					</tbody>
+				</table>
+			</div>
+
+			<!-- Segunda Aba da Tela -->
+			<div id="tb_edit" class="card col s12 w3-animate-fading">
+				<div class="modal-content">
+					<h4 class="userPageText">Usuário:</h4>
+					<!-- UPLOAD IMAGE -->
+					<div class="center">
+						<form id="uploadForm">
+							<div id="targetOuter">
+								<div id="targetLayer"></div>
+								<img src="../../assets/img_users/photo.png" class="icon-choose-image" />
+								<div class="icon-choose-image">
+									<input name="userImage" id="userImage" type="file" class="inputFile" onChange="showPreview(this);" />
+								</div>
+							</div>
+							<div>
+								<input type="submit" value="Carregar" class="btnSubmit" />
+						</form>
+						</div>
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix userPageText">vpn_key</i>
+							<input id="ipt_user_id" placeholder="Ex: 1" type="text" disabled>
+							<label for="ipt_user_id">ID</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix userPageText">date_range</i>
+							<input id="ipt_user_data" placeholder="Ex: 01/01/2018" type="text" disabled>
+							<label for="ipt_user_data">Data Criação</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix userPageText">person</i>
+							<input id="ipt_user_nome" placeholder="Ex: Smart User" type="text">
+							<label for="ipt_user_nome">Nome Completo</label>
+						</div>
+						<div class="input-field col s6 l2">
+							<i class="material-icons prefix userPageText">chrome_reader_mode</i>
+							<input id="ipt_user_empresa_id" placeholder="0" type="text">
+							<label for="ipt_user_empresa_id"></label>
+						</div>
+						<div class="input-field col s6 l4">
+							<input id="ipt_user_empresa_desc" placeholder="Ex: Empresa x" type="text">
+							<label for="ipt_user_empresa_desc">Empresa</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix userPageText">email</i>
+							<input id="ipt_user_email" placeholder="Ex: user@gmail.com" type="text">
+							<label for="ipt_user_email">Email</label>
+						</div>
+						<div class="switch col s12 l12">
+							<label>
+								<i class="material-icons userPageText">cancel</i>
+								<input type="checkbox" id="ipt_user_stat">
+								<span class="lever"></span>
+								<i class="material-icons green-text">check_circle</i>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating red right" onclick="changeTab('tb_selection');">
+						<i class="material-icons">close</i>
+					</a>
+					<a href="#!" id="user_edit" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+					 onclick="postUsers()">
+						<i class="material-icons">save</i>
+					</a>
+					<a href="#!" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating orange right"
+					 onclick="postResetPass()">
+						<i class="material-icons">lock_open</i>
+					</a>
+					<a href="#!" id="user_delete" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating left red"
+					 onclick="deleteUsers()">
+						<i class="material-icons">delete</i>
+					</a>
+					<a style="margin-top: 10px;"></a>
+				</div>
+			</div>
+
+			<!-- Terceira Aba da Tela -->
+			<div id="tb_permission" class="col s12 w3-animate-fading">
+				<div class="modal-content">
+					<h4 class="userPageText">Permissões do Usuário:</h4>
+					<div class="row">
+						<a id="var_user_permission"></a>
+						<a id="var_user_permission_type"></a>
+						<!-- Leads -->
+						<div class="col s12 m12">
+							<div class="card horizontal">
+								<div class="card-stacked">
+									<div class="card-content">
+										<p>Leads</p>
+									</div>
+									<div class="card-action">
+										<div class="col s12 m3">
+											<input type="checkbox" id="1_select" />
+											<label for="1_select">Selecionar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="1_create" />
+											<label for="1_create">Criar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="1_edit" />
+											<label for="1_edit">Editar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="1_delete" />
+											<label for="1_delete">Deletar</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Landing Page -->
+						<div class="col s12 m12">
+							<div class="card horizontal">
+								<div class="card-stacked">
+									<div class="card-content">
+										<p>Landing Page</p>
+									</div>
+									<div class="card-action">
+										<div class="col s12 m3">
+											<input type="checkbox" id="2_select" />
+											<label for="2_select">Selecionar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="2_create" />
+											<label for="2_create">Criar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="2_edit" />
+											<label for="2_edit">Editar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="2_delete" />
+											<label for="2_delete">Deletar</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Agenda -->
+						<div class="col s12 m12">
+							<div class="card horizontal">
+								<div class="card-stacked">
+									<div class="card-content">
+										<p>Agenda</p>
+									</div>
+									<div class="card-action">
+										<div class="col s12 m3">
+											<input type="checkbox" id="3_select" />
+											<label for="3_select">Selecionar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="3_create" />
+											<label for="3_create">Criar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="3_edit" />
+											<label for="3_edit">Editar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="3_delete" />
+											<label for="3_delete">Deletar</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Usuários -->
+						<div class="col s12 m12">
+							<div class="card horizontal">
+								<div class="card-stacked">
+									<div class="card-content">
+										<p>Usuários</p>
+									</div>
+									<div class="card-action">
+										<div class="col s12 m3">
+											<input type="checkbox" id="4_select" />
+											<label for="4_select">Selecionar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="4_create" />
+											<label for="4_create">Criar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="4_edit" />
+											<label for="4_edit">Editar</label>
+										</div>
+										<div class="col s12 m3">
+											<input type="checkbox" id="4_delete" />
+											<label for="4_delete">Deletar</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating red right" onclick="changeTab('tb_selection');">
+						<i class="material-icons">close</i>
+					</a>
+					<a href="#!" id="user_edit" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+					 onclick="postUserPermission();">
+						<i class="material-icons">save</i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+<!--  Scripts-->
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
+<script src="../../assets/js/materialize.js"></script>
+<script src="../../assets/js/init.js"></script>
+<script src="user_page.js"></script>
+<script src="../../assets/js/jquery.maskedinput.js"></script>
+
+</html>

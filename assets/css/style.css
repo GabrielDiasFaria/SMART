@@ -1,0 +1,200 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+ /* LANDING PAGE CSS */
+.landingPage{
+  background-color: #0288d1;  
+}
+
+.landingPageText{
+  color: #0288d1;
+}
+
+.landingPageTextBtn1{
+  background-color: #0288d1;
+}
+
+.landingPageTextBtn2{
+  background-color: #01579b;
+}
+/* LANDING PAGE CSS */
+
+/* LEAD PAGE CSS */
+.leadPage{
+  background-color: #01579b;  
+}
+
+.leadPageText{
+  color: #01579b;
+}
+/* LEAD PAGE CSS */
+
+/* DIARY PAGE CSS */
+.diaryPage{
+  background-color: #0091ea;  
+}
+
+.diaryPageText{
+  color: #0091ea;
+}
+/* DIARY PAGE CSS */
+
+/* USER PAGE CSS */
+.userPage{
+  background-color: #80d8ff;  
+}
+
+.userPageText{
+  color: #80d8ff;
+}
+/* USER PAGE CSS */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.dropdown-content{
+    overflow: visible !important;
+}
+
+.displayNone {
+  display: none;
+}
+
+@-webkit-keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; } 
+}
+@-moz-keyframes fadeIn {
+0% { opacity: 0;}
+100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+@keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+.w3-animate-fading{
+  -webkit-animation: fadeIn 0.5s ease-in-out;
+  -moz-animation: fadeIn 0.5s ease-in-out;
+  -o-animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+}	
+
+#calendar {
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 0 10px;
+}
+
+.fc-center {
+  margin-top: 15px;
+}
+
+.preloader {
+  left: 48%;
+  float: none;
+  top: 27%;
+  position: fixed;
+}
+
+.blurDiv {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+
+body {
+  font-family: Gilroy;
+}
+
+.bgColor {
+  max-width: 440px;
+  height: 400px;
+  padding: 30px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#targetOuter {
+  position: relative;
+  text-align: center;
+  background-color: #F0E8E0;
+  margin: 20px auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.btnSubmit {
+  background-color: #565656;
+  border-radius: 4px;
+  padding: 10px;
+  border: #333 1px solid;
+  color: #FFFFFF;
+  width: 100px;
+  cursor: pointer;
+}
+
+.inputFile {
+  padding: 5px 0px;
+  margin-top: 8px;
+  background-color: #FFFFFF;
+  width: 48px;
+  overflow: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.icon-choose-image {
+  position: absolute;
+  opacity: 0.1;
+  top: 50%;
+  left: 50%;
+  margin-top: -24px;
+  margin-left: -24px;
+  width: 48px;
+  height: 48px;
+}
+
+.upload-preview {
+  border-radius: 4px;
+  opacity: 0.8;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+#body-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#body-overlay div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -32px;
+  margin-left: -32px;
+}

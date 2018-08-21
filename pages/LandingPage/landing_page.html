@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	<title>MI Marketing - Landing</title>
+	<link href="../../assets/css/materialize.css?v=1.2.0" rel="stylesheet" />
+	<link href="../../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../assets/css/font.css" rel='stylesheet' type='text/css'>
+
+</head>
+
+<!-- 
+	Landing Pages:
+	Título
+	Data de Início
+	Status
+-->
+
+<body>
+
+	<div id="preLoader" class="preloader-wrapper big active preloader displayNone">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+
+		<div class="center landingPage panel-heading z-depth-1" style="margin-top: 1px;" id="Titulo_Page">
+			<a class="white-text">
+				<i class="material-icons white-text" style="margin-top: 6px;">chrome_reader_mode</i>
+			</a>
+		</div>
+
+		<h4 class="center landingPageText">Landing Pages</h4>
+
+		<div class="row" id="loaderBlur">
+			<div class="col s12" hidden>
+				<ul class="tabs">
+					<li class="tab col s3">
+						<a class="active" href="#tb_selection">Selection</a>
+					</li>
+					<li class="tab col s3">
+						<a href="#tb_edit">Edit</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Primeira Aba da Tela -->
+			<div id="tb_selection" class="col s12 w3-animate-fading">
+				<div id="landing_criar" class="fixed-action-btn left">
+					<a class="btn-floating btn-large landingPage" onclick="abre_Modal_Edit('0', '', '', '0', '', '');" data-position="top" data-delay="50"
+					 data-tooltip="Novo">
+						<i class="large material-icons">add</i>
+					</a>
+				</div>
+				<div class="row z-depth-0" id="landingPagesList">
+				</div>
+			</div>
+
+			<!-- Segunda Aba Aba da Tela -->
+			<div id="tb_edit" class="card col s12 w3-animate-fading">
+				<div class="card-content">
+					<h4 class="landingPageText">Landing:</h4>
+					<div class="row">
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix landingPageText">vpn_key</i>
+							<input id="ipt_landing_id" placeholder="Ex: 1" type="text">
+							<label for="ipt_landing_id">Landing Page</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix landingPageText">date_range</i>
+							<input class="datepicker" id="ipt_landing_data" placeholder="Ex: 01/01/2018" type="date">
+							<label for="ipt_landing_data">Data Início</label>
+						</div>
+						<div class="input-field col s12 l12">
+							<i class="material-icons prefix landingPageText">description</i>
+							<input id="ipt_landing_titulo" placeholder="Ex: título da landing page" type="text">
+							<label for="ipt_landing_titulo">Título Landing Page</label>
+						</div>
+						<div class="input-field col s12 l12">
+							<i class="material-icons prefix landingPageText">insert_link</i>
+							<input id="ipt_landing_link" placeholder="Ex: www.google.com.br" type="text">
+							<label for="ipt_landing_link">Link Landing</label>
+						</div>
+						<div class="input-field col s12 l6" style="display: none">
+							<i class="material-icons prefix landingPageText">insert_link</i>
+							<input id="ipt_landing_img" placeholder="Ex: www.google.com.br" type="text">
+							<label for="ipt_landing_img">Link Image Landing</label>
+						</div>
+						<div class="switch col s12 l12">
+							<label>
+								<i class="material-icons red-text">cancel</i>
+								<input type="checkbox" id="ipt_landing_stat">
+								<span class="lever"></span>
+								<i class="material-icons landingPageText">check_circle</i>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="#!" id="landing_cancel" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating red right"
+					 onclick="changeTab('tb_selection');">
+						<i class="material-icons">close</i>
+					</a>
+					<a href="#!" id="landing_edit" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+					 onclick="postLandingPages();">
+						<i class="material-icons">save</i>
+					</a>
+					<a href="#!" id="landing_delete" style="margin-top: -10px;" class="waves-effect waves btn-floating left red" onclick="deleteLandingPages()">
+						<i class="material-icons">delete</i>
+					</a>
+					<a style="margin-top: 10px;"></a>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+</body>
+
+<!--  Scripts-->
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
+<script src="../../assets/js/Menu.js"></script>
+<script src="../../assets/js/materialize.js"></script>
+<script src="../../assets/js/init.js"></script>
+<script src="landing_page.js"></script>
+
+</html>

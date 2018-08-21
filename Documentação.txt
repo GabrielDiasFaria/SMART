@@ -1,0 +1,16 @@
+
+Landing Pages:
+	Título
+	Data de Início
+	Status
+	
+Leads (Opção de Download de Mailing):
+	Landing Pages
+	Nome
+	Telefone
+	E-mail
+	Data Cadastro
+	Status
+	
+Agenda:
+	Calendario com os Leads por dia

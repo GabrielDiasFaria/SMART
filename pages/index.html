@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<meta name="viewport" content="width=device-width" />
+		<title>SMART - Home</title>		
+		<link href="../assets/css/materialize.css" rel="stylesheet" />
+		<link href="../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../assets/css/font.css" rel='stylesheet' type='text/css'>	
+		<style>			
+		</style>	
+	</head>
+	
+	<body>
+		<form class="col s12">	
+		
+		<!-- Modal Structure -->
+	<div id="modal_user" class="modal">
+		<div class="modal-content">
+			<h4 class="userPageText">Modificar Usuário</h4>
+			<div id="row">				
+				<div class="input-field col s6 l6">
+						<i class="material-icons prefix userPageText">vpn_key</i>
+						<input id="ipt_user_id" placeholder="Ex: 1" type="text" disabled>
+						<label for="ipt_user_id">ID</label>
+				</div>
+				<div class="input-field col s6 l6">
+					<i class="material-icons prefix userPageText">person</i>
+					<input id="ipt_user_nome" placeholder="Ex: Smart User" type="text">
+					<label for="ipt_user_nome">Nome Completo</label>
+				</div>
+				<div class="input-field col s6 m6 l6">
+					<i class="material-icons prefix userPageText">lock</i>
+					<input id="ipt_user_pass" placeholder="Ex: 123" type="text">
+					<label for="ipt_user_pass">Senha</label>
+				</div>
+				<div class="input-field col s6 m6 l6">
+					<i class="material-icons prefix userPageText">lock</i>
+					<input id="ipt_user_pass_conf" placeholder="Ex: 123" type="text">
+					<label for="ipt_user_pass_conf">Confirmar Senha</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+		    <a href="#!" id="user_save" style="margin-top: -20px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+				 onclick="">
+				<i class="material-icons">save</i>
+			</a>
+		</div>
+	 </div>
+
+		<!-- Dropdown | Pole Alimentos -->
+		<!-- <ul id="dd_pole_alimentos" class="dropdown-content">		    
+			<li><a><i class="material-icons left orange-text">widgets</i>Comercial</a></li>
+			<li class="divider"></li>
+			<li><a><i class="material-icons left orange-text">widgets</i>TI</a></li>
+			<li class="divider"></li>
+			<li><a class="dropdown-button2 d" data-activates="dd_pole_alimentos_producao"><i class="material-icons left orange-text">widgets</i>Produção</a></li>
+		</ul> -->
+		
+		<!-- Dropdown | Pole Alimentos | Setor de Produção -->
+		<!-- <ul id='dd_pole_alimentos_producao' class='dropdown-content'>
+			<li><a class="btn_frame" frame="pole/producao/painel_producao.html" titleFrame="Painel Produção"><i class="material-icons left orange-text">chrome_reader_mode</i>Painel Produção</a></li>			  		    
+		</ul> -->
+				
+		<div id="Menu">					
+			<nav class="white" role="navigation">
+				<a id="logo-container" class="brand-logo center " ><img height="40" style="margin-top: 9px;" src="../assets/img/logo2.png"></a>
+				<a class="button-collapse right" href="collapsible.html" onclick="logOut()"><i class="material-icons black-text">exit_to_app</i></a>
+				<ul id="slide-out" class="side-nav white">
+					<li>
+						<div id="user_edit" class="user-view " href="#modal_user">
+						  <div class="background">
+							<img src="../assets/img/background3.jpg" style="width: 130%;">
+						  </div>
+						  <!-- <a href="#!user"><img class="circle" src="http://materializecss.com/images/yuna.jpg"></a> -->
+						  <a href="#!user" id="user_Image"><img class="circle" src="../assets/img/ui-sherman.jpg"></a>
+						  <a href="#!name"><span class="white-text name" id="Param_Email"></span></a>	
+						  <a href="#!email"><span class="white-text email" id="Param_Name"></span></a>
+						  					  
+						</div>
+					</li>
+					<li><a id="mn_news" class="btn_frame black-text" frame="Newsletter/newsletter.html" titleFrame="Newsletter">
+							<i class="material-icons left light-blue-text text-accent-1">message</i>
+							News
+						</a>
+					</li>
+					<li><a id="mn_landing" class="btn_frame black-text" frame="LandingPage/landing_page.html" titleFrame="Landing Page" class="dropdown-button" data-activates="dpb_landing">
+							<i class="material-icons left light-blue-text text-darken-2">chrome_reader_mode</i>
+							Landing Pages
+						</a>
+					</li>
+					<li><a id="mn_leads" class="btn_frame dropdown-button black-text" frame="Lead/leads_page.html" titleFrame="Leads Page" data-activates="dpb_leads">
+							<i class="material-icons left light-blue-text text-darken-4">assignment_ind</i>Leads
+						</a>
+					</li>														
+					<li><a id="mn_agenda" class="btn_frame dropdown-button black-text" frame="Diary/diary_page.html" titleFrame="Diary Page" data-activates="dpb_agenda">
+							<i class="material-icons left light-blue-text text-accent-4">event</i>Agenda
+						</a>
+					</li>										
+					<!-- <li><a class="dropdown-button white-text" data-activates="dpb_relatorio"><i class="material-icons left purple-text">insert_chart</i>Relatórios</a></li> -->
+					<li><a id="mn_usuarios" class="btn_frame dropdown-button black-text" frame="Usuario/user_page.html" titleFrame="User Page" data-activates="dpb_usuario">
+							<i class="material-icons left light-blue-text text-accent-1">fingerprint</i>
+							Usuários
+						</a>
+					</li>
+					<!-- <li class="divider"></li> -->
+					<li><a id="mn_configuracao" class="btn_frame black-text" frame="Configuracao/configuration.html" titleFrame="Configuração" data-activates="dpb_configuracao">
+							<i class="material-icons left light-blue-text text-accent-1">settings</i>
+							Configurações
+						</a>
+					</li>
+				  </ul>
+				  <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="material-icons">menu</i></a>				  
+			</nav>			
+  		</div>
+		
+		<div id="iframe-container" class="center">
+			<IFRAME 
+				id="iframe"
+				name="iframe"
+				src="Diary/diary_page.html" 
+				style="position:fixed; top: 56px; left:0px; bottom:0px; right:0px; width:100%; height:90%; border:none; margin:0; padding:0; overflow:hidden;"  
+				frameborder="0" 
+				align="center"
+				onload="iframeChange(this)">
+			</IFRAME>
+		</div>
+		</form>
+	</body>
+	
+	<!--  Scripts-->
+	<script type="text/javascript">					
+			// RECEBE QUAL PÁGINA O IFRAME ESTÁ
+			function iframeChange(obj)
+			{
+				var page = obj.src;
+				//alert(page.substring(page.indexOf("P_")));
+			}
+	</script>
+	<script src="../assets/js/jquery-2.1.1.min.js"></script>
+	<script src="../assets/js/materialize.js"></script>	
+	<script src="../assets/js/Custom.js"></script>
+	<script src="../assets/js/init.js"></script>	
+	<script src="index.js"></script>
+
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	<title>SMART - Diary</title>
+	<link href='../../assets/css/fullcalendar.min.css' rel='stylesheet' />
+	<link href='../../assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<link href="../../assets/css/materialize.css?v=1.2.0" rel="stylesheet" />
+	<link href="../../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../assets/css/font.css" rel='stylesheet' type='text/css'>
+	<style>
+	</style>
+</head>
+
+<body>
+
+	<div id="preLoader" class="preloader-wrapper big active preloader displayNone">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<div class="center diaryPage panel-heading z-depth-1" style="margin-top: 1px;" id="Titulo_Page">
+			<a class="white-text">
+				<i class="material-icons white-text" style="margin-top: 6px;">assignment_ind</i>
+			</a>
+		</div>
+
+		<h4 class="center diaryPageText" >Agenda</h4>
+
+		<br>
+
+		<div class="row" id="loaderBlur">
+			<div class="col s12" hidden>
+				<ul class="tabs">
+					<li class="tab col s3">
+						<a class="active" href="#tb_selection">Selection</a>
+					</li>
+					<li class="tab col s3">
+						<a href="#tb_edit">Edit</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Primeira Aba da Tela -->
+			<div id="tb_selection" class="col s12 w3-animate-fading">
+
+				<div id="diary_create" class="fixed-action-btn left">
+					<a class="diaryPage btn-floating btn-large" onclick="abre_Modal_Edit('0', '', '', '0', '', '');" data-position="top" data-delay="50"
+					 data-tooltip="Novo">
+						<i class="large material-icons">add</i>
+					</a>
+				</div>
+
+				<div id='calendar' class="diaryPageText"></div>
+			</div>
+
+			<!-- Segunda Aba da Tela -->
+			<!-- ****** MODAL EDIT ******-->
+			<div id="tb_edit" class="card col s12 w3-animate-fading">
+				<div class="card-content">
+					<h4 class="diaryPageText">Evento:</h4>
+					<div class="row">
+						<div class="input-field col s12 l12" hidden>
+							<i class="material-icons prefix diaryPageText">vpn_key</i>
+							<input id="ipt_event_id" placeholder="Ex: 1" type="text" disabled>
+							<label for="ipt_event_id">ID</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix diaryPageText">date_range</i>
+							<input class="datepicker" id="ipt_event_inicio" placeholder="Ex: 01/01/2018" type="date">
+							<label for="ipt_event_inicio">Data da Conslta</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix diaryPageText">date_range</i>
+							<input type="text" id="ipt_event_inicio_hora" placeholder="Ex: 01:30" class="timepicker">
+							<label for="ipt_event_inicio_hora">Hora da Consulta</label>
+						</div>
+						<div class="input-field col s12 l6" hidden>
+							<i class="material-icons prefix diaryPageText">date_range</i>
+							<input class="datepicker" id="ipt_event_fim" placeholder="Ex: 02/01/2018" type="date">
+							<label for="ipt_event_fim">Fim</label>
+						</div>
+						<div class="input-field col s6 l2">
+							<i class="material-icons prefix diaryPageText">person</i>
+							<input id="ipt_event_lead" placeholder="Ex: Lead" type="text">
+							<label for="ipt_event_lead">Lead</label>
+						</div>
+						<div class="input-field col s6 l4">
+							<input id="ipt_event_nome" placeholder="Ex: Lead" disabled type="text">
+							<label for="ipt_event_nome">Nome</label>
+						</div>
+						<div class="input-field col s12 l1">
+							<i class="material-icons prefix diaryPageText">color_lens</i>
+							<input id="ipt_event_color_pallet" type="color" name="favcolor" style="max-width: 55px; height: 35px;">
+						</div>
+						<div class="input-field col s12 l5">
+							<input id="ipt_event_cor" placeholder="Ex: #ffffff" disabled type="text">
+							<label for="ipt_event_cor">Cor</label>
+						</div>
+						<div class="input-field col s12 l12">
+							<i class="material-icons prefix diaryPageText">format_size</i>
+							<textarea id="ipt_event_text" class="materialize-textarea" data-length="120"></textarea>
+							<label for="ipt_event_text">Descrição</label>
+						</div>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="#!" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating red right" onclick="changeTab('tb_selection');">
+						<i class="material-icons">close</i>
+					</a>
+					<a href="#!" id="diary_edit" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+					 onclick="postDairy();">
+						<i class="material-icons">save</i>
+					</a>
+					<a href="#!" id="diary_delete" style="margin-top: -10px;" class="waves-effect waves btn-floating left red" onclick="deleteEvento();">
+						<i class="material-icons">delete</i>
+					</a>
+					<a style="margin-top: 10px;"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- --------------- -->
+	<!-- ÁREA DE MODAIS  -->
+	<!-- --------------- -->
+	<div id="modalLead" class="modal">
+		<div class="modal-content">
+			<table class="highlight responsive-table">
+				<thead>
+					<tr class="orange-text">
+						<th>#</th>
+						<th>Landing Page</th>
+						<th>Name</th>
+						<th>Selecionar</th>
+					</tr>
+				</thead>
+
+				<tbody id="leadsList">
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+		</div>
+	</div>
+
+</body>
+
+<!--  Scripts-->
+
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
+<script src='../../assets/js/moment.min.js'></script>
+<script src='../../assets/js/fullcalendar.min.js'></script>
+<script src='../../assets/js/locale-all.js'></script>
+<script src="../../assets/js/materialize.js"></script>
+<script src="../../assets/js/init.js"></script>
+<script src="diary_page.js"></script>
+
+</html>

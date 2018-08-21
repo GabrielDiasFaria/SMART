@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+	<title>SMART - Leads</title>
+	<link href="../../assets/css/materialize.css?v=1.2.0" rel="stylesheet" />
+	<link href="../../assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../assets/css/font.css" rel='stylesheet' type='text/css'>
+</head>
+
+<!-- 
+	Leads (Opção de Download de Mailing):
+	Landing Pages
+	Nome
+	Telefone
+	E-mail
+	Data Cadastro
+	Status
+-->
+
+<body>
+
+	<div id="preLoader" class="preloader-wrapper big active preloader displayNone">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+
+		<div class="center leadPage panel-heading z-depth-1" style="margin-top: 1px;" id="Titulo_Page">
+			<a class="white-text">
+				<i class="material-icons white-text" style="margin-top: 6px;">assignment_ind</i>
+			</a>
+		</div>
+
+		<h4 class="center leadPageText">Leads</h4>
+
+		<div class="row" id="loaderBlur">
+			<div class="col s12" hidden>
+				<ul class="tabs">
+					<li class="tab col s3">
+						<a class="active" href="#tb_selection">Selection</a>
+					</li>
+					<li class="tab col s3">
+						<a href="#tb_edit">Edit</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Primeira Aba da Tela -->
+			<div id="tb_selection" class="col s12 w3-animate-fading">
+
+				<div id="leads_create" class="fixed-action-btn ">
+					<a class="btn-floating btn-large leadPage " onclick="abre_Modal_Edit('0', '', '', '', '', '', '0');">
+						<i class="material-icons">add</i>
+					</a>
+				</div>
+
+				<table class="highlight responsive-table">
+					<thead>
+						<tr class="leadPageText">
+							<th>#</th>
+							<th>Landing Page</th>
+							<th>Name</th>
+							<!-- <th>Telefone</th> -->
+							<th>Email</th>
+							<!-- <th>Data Cadastro</th> -->
+							<th>Status</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+
+					<tbody id="leadsList">
+					</tbody>
+				</table>
+			</div>
+
+			<!-- 
+			****** MODAL EDIT ******
+			-->
+			<div id="tb_edit" class="card col s12 w3-animate-fading">
+				<div class="modal-content">
+					<h4 class="leadPageText">Leads:</h4>
+					<div class="row">
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix leadPageText">vpn_key</i>
+							<input id="ipt_lead_id" placeholder="Ex: 1" type="text" disabled>
+							<label for="ipt_lead_id">ID</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix leadPageText">date_range</i>
+							<input class="datepicker" id="ipt_lead_data" placeholder="Ex: 01/01/2018" type="date">
+							<label for="ipt_lead_data">Data Atendimento</label>
+						</div>
+
+						<div class="input-field col s6 l2">
+							<i class="material-icons prefix leadPageText">chrome_reader_mode</i>
+							<input id="ipt_lead_landing_id" placeholder="0" type="text">
+							<label for="ipt_lead_landing_id"></label>
+						</div>
+						<div class="input-field col s6 l4">
+							<input id="ipt_lead_landing" placeholder="Ex: Landing Page" disabled type="text">
+							<label for="ipt_lead_landing">Landing Page</label>
+						</div>
+
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix leadPageText">person</i>
+							<input id="ipt_lead_nome" placeholder="Ex: Lead" type="text">
+							<label for="ipt_lead_nome">Nome Completo</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix leadPageText">phone</i>
+							<input id="ipt_lead_telefone" placeholder="Ex: (85) 9 9999-9999" type="text">
+							<label for="ipt_lead_telefone">Telefone</label>
+						</div>
+						<div class="input-field col s12 l6">
+							<i class="material-icons prefix leadPageText">email</i>
+							<input id="ipt_lead_email" placeholder="Ex: lead@gmail.com" type="text">
+							<label for="ipt_lead_email">Email</label>
+						</div>
+						<div class="input-field col s12 l12">
+							<i class="material-icons prefix leadPageText">format_size</i>
+							<textarea id="ipt_lead_text" class="materialize-textarea" data-length="120"></textarea>
+							<label for="ipt_lead_text">Descrição</label>
+						</div>
+						<div class="switch col s12 l12">
+							<label>
+								<i class="material-icons red-text">cancel</i>
+								<input type="checkbox" id="ipt_lead_stat">
+								<span class="lever"></span>
+								<i class="material-icons green-text">check_circle</i>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" style="margin-left: 4px; margin-top: -10px;" class="waves-effect waves btn-floating red right" onclick="changeTab('tb_selection');">
+						<i class="material-icons">close</i>
+					</a>
+					<a href="#!" id="leads_edit" style="margin-left: 4px; margin-top: -10px;" class="btn_refresh modal-action waves-effect waves btn-floating green right"
+					 onclick="postLead()">
+						<i class="material-icons">save</i>
+					</a>
+					<a href="#!" id="leads_delete" style="margin-top: -10px;" class="waves-effect waves btn-floating left red" onclick="deleteLead()">
+						<i class="material-icons">delete</i>
+					</a>
+					<a style="margin-top: 10px;"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- --------------- -->
+	<!-- ÁREA DE MODAIS  -->
+	<!-- --------------- -->
+	<div id="modalLandingPage" class="modal">
+		<div class="modal-content">
+			<table class="highlight responsive-table">
+				<thead>
+					<tr class="green-text">
+						<th>#</th>
+						<th>Landing Page</th>
+						<th>Selecionar</th>
+					</tr>
+				</thead>
+
+				<tbody id="landingPagesList">
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+		</div>
+	</div>
+</body>
+
+<!--  Scripts-->
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
+<script src="../../assets/js/materialize.js"></script>
+<script src="../../assets/js/init.js"></script>
+<script src="leads_page.js"></script>
+<script src="../../assets/js/jquery.maskedinput.js"></script>
+
+</html>
