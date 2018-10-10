@@ -320,7 +320,12 @@ function postUsers() {
 	parametro += ',"EMPRESA_DESC":"' + $('#ipt_user_empresa_desc').val() + '"';	
 	parametro += ',"EMAIL":"' + $('#ipt_user_email').val() + '"';
 	parametro += ',"ATIVO":"' + status + '"';
-	parametro += ',"IMAGE":"' + $('#ipt_user_image').attr('name') + '"';
+	if ($('#ipt_user_image').attr('name')) {
+		parametro += ',"IMAGE":"' + $('#ipt_user_image').attr('name') + '"';
+	}	
+	else{
+		parametro += ',"IMAGE":"photo.png"';		
+	}
 	parametro += ',"ID":"' + $('#ipt_user_id').val() + '"}';
 
 	var jsonObj = JSON.parse(parametro);
@@ -375,7 +380,7 @@ function deleteUsers() {
 
 			setTimeout(
 				function () {
-					$('#mdl_edit_user').modal('close');
+					changeTab('tb_selection');
 				}, 1000);
 		},
 		error: function (xhr, textStatus, error) {
@@ -451,7 +456,7 @@ function showPreview(objFileInput) {
 $("#uploadForm").on('submit', (function (e) {
 	e.preventDefault();
 	$.ajax({
-		url: "http://gdfconsultoria.com.br/SMART/php/User/User_Upload_Image.php",
+		url: "http://smart.globalconsultoria.online/php/User/User_Upload_Image.php",
 		type: "POST",
 		data: new FormData(this),
 		beforeSend: function () { $("#body-overlay").show(); },

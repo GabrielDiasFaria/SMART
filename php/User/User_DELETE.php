@@ -17,7 +17,7 @@ try {
 		settype($v_id, "string");	
 	}
 
-	$sql =  "DELETE FROM tb_Lead WHERE ID = '$v_id'";
+	$sql =  "DELETE FROM tb_User WHERE ID = '$v_id'; DELETE FROM `tb_Permissions` WHERE User = '$v_id'";
 		
 	// EXECUTA A QUERY		
 	if ($dbh->query($sql)) {

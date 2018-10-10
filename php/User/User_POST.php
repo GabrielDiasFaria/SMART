@@ -83,7 +83,7 @@ try {
 
 	if ($v_id == "" || $v_id == "0") {
 		$v_type = 1;
-		$sql =  "INSERT INTO tb_User VALUES (null, '$v_nome', $v_empresa, $v_empresa_desc, '$v_email', $v_ativo, now(), '202cb962ac59075b964b07152d234b70', '$v_Image')";
+		$sql =  "INSERT INTO tb_User VALUES (null, '$v_nome', $v_empresa, '$v_empresa_desc', '$v_email', $v_ativo, now(), '202cb962ac59075b964b07152d234b70', '$v_Image')";
 	} elseif ($v_Senha == "") {
 		$v_type = 2;
 		$sql =  "UPDATE tb_User SET nome = '$v_nome', empresa = '$v_empresa', empresa_desc = '$v_empresa_desc', email = '$v_email', ativo = $v_ativo, imagem = '$v_Image' WHERE id = $v_id";
